@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 
 namespace CloudyWing.TaskRunners {
-    public class BatchTaskRunner : TaskRunnerBase, ITaskRunnable {
-        private ICollection<ITaskRunnable> runners = new List<ITaskRunnable>();
+    public class BulkTaskRunner : TaskRunnerBase, ITaskRunnable {
+        private readonly ICollection<ITaskRunnable> runners = new List<ITaskRunnable>();
+
         public event EventHandler<ExceptionEventArgs> ExceptionThrownEvent;
 
-        public BatchTaskRunner(bool isStoppedIfFail = false) {
+        public BulkTaskRunner(bool isStoppedIfFail = false) {
             IsStoppedIfFail = isStoppedIfFail;
         }
 

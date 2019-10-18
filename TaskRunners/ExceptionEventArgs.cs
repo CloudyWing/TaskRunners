@@ -6,6 +6,6 @@ namespace CloudyWing.TaskRunners {
             Exception = exception;
         }
 
-        public Exception Exception { get; set; }
+        public Exception Exception { get; }
     }
 }
