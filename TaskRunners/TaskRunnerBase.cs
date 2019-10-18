@@ -5,7 +5,7 @@ namespace CloudyWing.TaskRunners {
         public event EventHandler TaskRunningEvent;
         public event EventHandler TaskRunnedEvent;
 
-        public TaskRunnerBase() { }
+        protected TaskRunnerBase() { }
 
         public void Run() {
             OnTaskRunning();
