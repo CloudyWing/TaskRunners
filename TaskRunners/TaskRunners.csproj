@@ -1,12 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
     <AssemblyName>CloudyWing.TaskRunners</AssemblyName>
     <RootNamespace>CloudyWing.TaskRunners</RootNamespace>
-    <Authors>雲翼</Authors>
-    <Company></Company>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>周尚緯</Authors>
+    <Company />
+    <Product>TaskRunners</Product>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.7324.0</FileVersion>
+    <Description>使用BulkRunner來處理當發生例外時，是接續執行後續行為還是中止執行。</Description>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/CloudyWing/TaskRunners</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/CloudyWing/TaskRunners</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
   </PropertyGroup>
-
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>$(AssemblyName).Tests</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+  
 </Project>
