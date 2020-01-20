@@ -5,7 +5,13 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskRunners", "TaskRunners\TaskRunners.csproj", "{DA7ABFC2-73E5-44C0-943B-5D331336BD62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskRunners.Tests", "TaskRunners.Tests\TaskRunners.Tests.csproj", "{39371580-C717-4657-A96C-C4D28B9ABC5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskRunners.Tests", "TaskRunners.Tests\TaskRunners.Tests.csproj", "{39371580-C717-4657-A96C-C4D28B9ABC5D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D6AC3DC7-257A-4C8D-A1E0-ED9B6C7C546C}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE.md = LICENSE.md
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

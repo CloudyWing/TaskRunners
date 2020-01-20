@@ -3,7 +3,10 @@ using System.Collections.Generic;
 
 namespace CloudyWing.TaskRunners {
     public struct TaskInfo {
-        public TaskInfo(string name) : this() => (Id, Name) = (Guid.NewGuid(), name);
+        public TaskInfo(string name) : this() {
+            Id = Guid.NewGuid();
+            Name = name;
+        }
 
         public static bool operator ==(TaskInfo left, TaskInfo right) {
             return left.Equals(right);
