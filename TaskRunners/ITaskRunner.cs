@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace CloudyWing.TaskRunners {
-    public interface ITaskRunnable {
+    public interface ITaskRunner {
         TaskStatus TaskStatus { get; }
 
         TimeSpan Elapsed { get; }

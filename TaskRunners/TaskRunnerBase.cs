@@ -2,7 +2,7 @@
 using System.Diagnostics;
 
 namespace CloudyWing.TaskRunners {
-    public abstract class TaskRunnerBase : ITaskRunnable {
+    public abstract class TaskRunnerBase : ITaskRunner {
         private readonly Stopwatch stopwatch = new Stopwatch();
 
         public event EventHandler<TaskRunningEventArgs> TaskRunningEvent;

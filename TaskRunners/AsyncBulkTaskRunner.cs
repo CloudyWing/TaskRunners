@@ -12,12 +12,12 @@ namespace CloudyWing.TaskRunners {
             this.ignoreException = ignoreException;
         }
 
-        public AsyncBulkTaskRunner(string taskName, bool ignoreException, params ITaskRunnable[] items)
+        public AsyncBulkTaskRunner(string taskName, bool ignoreException, params ITaskRunner[] items)
             : base(taskName, false, items) {
             this.ignoreException = ignoreException;
         }
 
-        public AsyncBulkTaskRunner(string taskName, bool ignoreException, IEnumerable<ITaskRunnable> items)
+        public AsyncBulkTaskRunner(string taskName, bool ignoreException, IEnumerable<ITaskRunner> items)
             : base(taskName, false, items) {
             this.ignoreException = ignoreException;
         }
