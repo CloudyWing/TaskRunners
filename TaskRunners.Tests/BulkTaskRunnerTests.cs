@@ -14,12 +14,41 @@ namespace CloudyWing.TaskRunners.Tests {
         }
 
         [Test]
+        public void GuidIndexer_IsExisting_取得TaskRunner() {
+            TaskRunner runner1 = new TaskRunner("Test1", () => { });
+            TaskRunner runner2 = new TaskRunner("Test2", () => { });
+            runners.AddRange(runner1, runner2);
+
+            ITaskRunner runner3 = runners[runner1.TaskInfo.Id];
+            ITaskRunner runner4 = runners[runner2.TaskInfo.Id];
+
+            runner3.Should().Be(runner1);
+            runner4.Should().Be(runner2);
+        }
+
+        [Test]
+        public void GuidIndexer_IsNotExisting_ReturnNull() {
+            runners.AddRange(new TaskRunner("Test1", () => { }));
+            ITaskRunner taskRunner = runners[Guid.Empty];
+
+            taskRunner.Should().BeNull();
+        }
+
+        [Test]
         public void Contains_IsTrue() {
             TaskRunner runner = new TaskRunner("Test", () => { });
             runners.Add(runner);
             runners.Contains(runner);
 
             runners.Contains(runner).Should().BeTrue();
+        }
+
+        [Test]
+        public void Add_AddDuplicates_ThrowArgumentException() {
+            TaskRunner runner = new TaskRunner("Test", () => { });
+            runners.Add(runner);
+            Action act = () => runners.Add(runner);
+            act.Should().Throw<ArgumentException>();
         }
 
         [Test]

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace CloudyWing.TaskRunners {
     public class BulkTaskRunner : TaskRunnerBase {
-        private readonly List<ITaskRunner> runners = new List<ITaskRunner>();
+        private readonly TaskRunnerCollection runners = new TaskRunnerCollection();
         private readonly TaskInfo taskInfo;
 
         public event EventHandler<TaskExceptionEventArgs> ExceptionThrownEvent;
@@ -33,7 +35,19 @@ namespace CloudyWing.TaskRunners {
 
         protected IList<ITaskRunner> Runners => runners;
 
-        public ITaskRunner this[int index] { get => runners[index]; set => runners[index] = value; }
+        public ITaskRunner this[int index] {
+            get => runners[index];
+        }
+
+        public ITaskRunner this[TaskInfo info] {
+            get => runners[info];
+        }
+
+        public ITaskRunner this[Guid id] {
+            get {
+                return runners.SingleOrDefault(x => x.TaskInfo.Id == id);
+            }
+        }
 
         protected override void RunTask() {
             foreach (ITaskRunner runner in runners) {
@@ -63,7 +77,11 @@ namespace CloudyWing.TaskRunners {
 
         public void AddRange(params ITaskRunner[] items) => AddRange(items as IEnumerable<ITaskRunner>);
 
-        public void AddRange(IEnumerable<ITaskRunner> items) => runners.AddRange(items);
+        public void AddRange(IEnumerable<ITaskRunner> items) {
+            foreach (ITaskRunner item in items) {
+                runners.Add(item);
+            }
+        }
 
         public void CopyTo(ITaskRunner[] array, int arrayIndex) => runners.CopyTo(array, arrayIndex);
 
@@ -89,6 +107,10 @@ namespace CloudyWing.TaskRunners {
             foreach (ITaskRunner item in runners) {
                 item.TaskRunnedEvent += (o, e) => action(e);
             }
+        }
+
+        private class TaskRunnerCollection : KeyedCollection<TaskInfo, ITaskRunner> {
+            protected override TaskInfo GetKeyForItem(ITaskRunner item) => item.TaskInfo;
         }
     }
 }
