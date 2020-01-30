@@ -1,8 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace CloudyWing.TaskRunners {
-    public struct TaskInfo {
+    /// <summary>
+    /// The task info. Use only Id to determine if they are equal.
+    /// </summary>
+    /// <seealso cref="IEquatable{TaskInfo}" />
+    public struct TaskInfo : IEquatable<TaskInfo> {
         public TaskInfo(string name) : this() {
             Id = Guid.NewGuid();
             Name = name;
@@ -20,13 +23,10 @@ namespace CloudyWing.TaskRunners {
 
         public string Name { get; }
 
-        public override bool Equals(object obj) => obj is TaskInfo info && Id.Equals(info.Id) && Name == info.Name;
+        public override bool Equals(object obj) => obj is TaskInfo info && Equals(info);
 
-        public override int GetHashCode() {
-            var hashCode = -1919740922;
-            hashCode = hashCode * -1521134295 + Id.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Name);
-            return hashCode;
-        }
+        public bool Equals(TaskInfo other) => Id.Equals(other.Id);
+
+        public override int GetHashCode() => 2108858624 + Id.GetHashCode();
     }
 }
